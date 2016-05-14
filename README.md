@@ -1,3 +1,5 @@
+[![Build Status Travis CI](https://travis-ci.org/DerAtrox/Beer.NET.svg?branch=master)](https://travis-ci.org/DerAtrox/Beer.NET)
+[![Build status AppVeyor](https://ci.appveyor.com/api/projects/status/0h3qy885yd2dc9e0?svg=true)](https://ci.appveyor.com/project/DerAtrox/beer-net)
 [![NuGet](https://img.shields.io/nuget/v/Beer.NET.svg)](https://www.nuget.org/packages/Beer.NET)
 
 Beer.NET
@@ -24,23 +26,13 @@ You can also build Beer.NET yourself and add it as an reference to your project.
 Simple example in C#:
 
 ```
-using System;
 using DerAtrox.BeerNET;
 
-namespace BeerTest {
-	class Program {
-		static void Main(string[] args) {
-			Console.OutputEncoding = System.Text.Encoding.UTF8;
-			// Enable UTF-8 encoding.
-
-			Console.WriteLine(Beer.SerializeBeer("Hi"));
-			// Output: "µµµµµµµµµµµµµµµµ∫BEERBEERBEERBEERBEERBEERBEERBEER∫"
-
-			Console.WriteLine(Beer.DeserializeBeer("µµµµµµµµµµµµµµµµ∫BEERBEERBEERBEERBEERBEERBEERBEER∫"));
-			// Output: "Hi"
-
-			Console.ReadKey();
-		}
-	}
+public void BeerTest() {
+	string serialized = Beer.SerializeBeer("Hi");
+	// Value: "µµµµµµµµµµµµµµµµ∫BEERBEERBEERBEERBEERBEERBEERBEER∫"
+	
+	string deserialized = Beer.DeserializeBeer("µµµµµµµµµµµµµµµµ∫BEERBEERBEERBEERBEERBEERBEERBEER∫");
+	// Value: "Hi"
 }
 ```
