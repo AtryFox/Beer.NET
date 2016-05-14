@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Beer.NET.Test")]
+[assembly: AssemblyTitle("Beer.NET.Examples")]
 [assembly: AssemblyDescription("Beer implementation for .NET")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("DerAtrox.de")]
-[assembly: AssemblyProduct("Beer.NET.Test")]
+[assembly: AssemblyProduct("Beer.NET.Examples")]
 [assembly: AssemblyCopyright("Copyright by DerAtrox.de")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5b7400a3-29db-4003-8860-e1d1c75ea0ec")]
+[assembly: Guid("99f1aa75-793a-4f8c-bb83-d42e83111c8a")]
 
 // Version information for an assembly consists of the following four values:
 //
