@@ -1,3 +1,5 @@
+[![NuGet](https://img.shields.io/nuget/v/Beer.NET.svg)](https://www.nuget.org/packages/Beer.NET)
+
 Beer.NET
 ========
 
