@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Beer.NET.Test")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Beer implementation for .NET")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("DerAtrox.de")]
 [assembly: AssemblyProduct("Beer.NET.Test")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright by DerAtrox.de")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
