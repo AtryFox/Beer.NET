@@ -7,9 +7,6 @@ Beer.NET
 
 A [Beer](https://github.com/aledjones/Beer) implemenation for .NET Framework.
 
-Beer is a ciphering method first published by @aledjones. Basically it replaces every character of the 26-digit alphabet with a specific amount of "BEER".
-
-
 ## Prerequisites ##
 - .NET Framework 2.0 or higher
 
