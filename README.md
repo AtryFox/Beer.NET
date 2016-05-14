@@ -5,13 +5,13 @@
 Beer.NET
 ========
 
-A [Beer](https://github.com/aledjones/Beer) implemenation for .NET Framework.
+A [Beer](https://github.com/rauhkrusche/Beer) implemenation for .NET Framework.
 
 ## Prerequisites ##
 - .NET Framework 2.0 or higher
 
 ## Installation ##
-The simpleest way to install Beer.NET is to use our [NuGet package](https://www.nuget.org/packages/Beer.NET). Just open the context menu for your project with Visual Studio and click the option "*Manage NuGet Packages...*".
+The simplest way to install Beer.NET is to use our [NuGet package](https://www.nuget.org/packages/Beer.NET). Just open the context menu for your project with Visual Studio and click the option "*Manage NuGet Packages...*".
 
 ```
 PM> Install-Package Beer.NET
