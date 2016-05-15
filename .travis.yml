@@ -1,8 +1,8 @@
 language: csharp
 solution: Beer.NET.sln
-install:
+before_install:
+  - sudo apt-get install nunit-console
+before_script:
   - nuget restore Beer.NET.sln
-  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
-script:
-  - xbuild /p:Configuration=Release Beer.NET.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./Beer.NET.Tests/bin/Release/Beer.NET.Tests.dll
+after_script:
+  - nunit-console Beer.NET.Tests/bin/Release/Beer.NET.Tests.dll
