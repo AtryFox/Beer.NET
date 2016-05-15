@@ -17,7 +17,7 @@ namespace DerAtrox.BeerNET {
 			input = input.Replace(",", "BEER_BEER∫");
 
 			for (int i = 0; i < LowerCase.Count; i++) {
-				if (!new List<string>() { "B", "E", "R" }.Contains(LowerCase[i].ToString().ToUpper())) {
+				if (!new List<char>() { 'b', 'e', 'r' }.Contains(LowerCase[i])) {
 					input = input.Replace(LowerCase[i].ToString().ToUpper(), RepeateString('∫', "µ", i));
 				}
 
@@ -38,7 +38,7 @@ namespace DerAtrox.BeerNET {
 			input = input.Replace("BEER_BEER∫", ",");
 
 			for (int i = LowerCase.Count - 1; i >= 0; i--) {
-				if (!new List<string>() { "B", "E", "R" }.Contains(LowerCase[i].ToString().ToUpper())) {
+				if (!new List<char>() { 'b', 'e', 'r' }.Contains(LowerCase[i])) {
 					input = input.Replace(RepeateString('∫', "µ", i), LowerCase[i].ToString().ToUpper());
 				}
 
