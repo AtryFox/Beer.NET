@@ -5,7 +5,7 @@
 Beer.NET
 ========
 
-A [Beer](https://github.com/rauhkrusche/Beer) implemenation for .NET Framework.
+A [Beer](https://github.com/rauhkrusche/Beer) implementation for .NET Framework.
 
 ## Prerequisites ##
 - .NET Framework 2.0 or higher
