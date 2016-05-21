@@ -16,8 +16,8 @@ namespace DerAtrox.BeerNET.Tests {
 		}
 
 		[Test]
-		public void TestSerializeDeserialize() {
-			Assert.AreEqual(Beer.DeserializeBeer(Beer.SerializeBeer("qpalym._#ä")), "qpalym._#ä");
+		public void TestLoop() {
+			Assert.AreEqual(Beer.DeserializeBeer(Beer.SerializeBeer("QPqpALalYMymberBER,.-12#")), "QPqpALalYMymberBER,.-12#");
 		}
 	}
 }
