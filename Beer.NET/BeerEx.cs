@@ -31,7 +31,7 @@ namespace DerAtrox.BeerNET {
             return builder.ToString();
         }
 
-        public string Encode(string input) {
+        public string SerializeBeer(string input) {
             StringBuilder builder = new StringBuilder();
             foreach (var str in input) {
                 builder.Append(Substitute(str));
@@ -63,7 +63,7 @@ namespace DerAtrox.BeerNET {
             None = 0
         }
 
-        public string Decode(string input) {
+        public string DeserializeBeer(string input) {
             StringBuilder builder = new StringBuilder();
             foreach (var c in DeserializeBeerImpl(input)) {
                 builder.Append(c);

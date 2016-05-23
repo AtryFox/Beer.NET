@@ -1,6 +1,6 @@
 ﻿namespace DerAtrox.BeerNET {
     public interface IBeerEncoder {
-        string Encode(string input);
-        string Decode(string input);
+        string SerializeBeer(string input);
+        string DeserializeBeer(string input);
     }
 }
