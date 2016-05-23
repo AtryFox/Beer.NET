@@ -75,7 +75,6 @@ namespace DerAtrox.BeerNET {
             State state = State.None;
             StringBuilder buffer = new StringBuilder();
             int counter = 0;
-            bool my = false;
             bool isValid = false;
             bool hyphen = false;
 
@@ -136,7 +135,6 @@ namespace DerAtrox.BeerNET {
                     case 'µ':
                         if (state == State.None) {
                             state = State.My;
-                            my = true;
                         } else if (state == State.My) {
                             counter++;
                         } else {

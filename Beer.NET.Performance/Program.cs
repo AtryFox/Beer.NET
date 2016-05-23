@@ -60,10 +60,10 @@ namespace BeerNET.Performance {
             sw.Stop();
             var timeBeerDeserialize = sw.Elapsed;
 
-            Console.WriteLine($"Time for Beer (Serialize): {timeBeerSerialize}");
-            Console.WriteLine($"Time for BeerEx (Serialize): {timeBeerExSerialize}");
-            Console.WriteLine($"Time for Beer (Deserialize): {timeBeerDeserialize}");
-            Console.WriteLine($"Time for BeerEx (Deserialize): {timeBeerExDeserialize}");
+            Console.WriteLine("Time for Beer (Serialize): " + timeBeerSerialize.ToString());
+            Console.WriteLine("Time for BeerEx (Serialize): " + timeBeerExSerialize.ToString());
+            Console.WriteLine("Time for Beer (Deserialize): " + timeBeerDeserialize.ToString());
+            Console.WriteLine("Time for BeerEx (Deserialize): " + timeBeerExDeserialize.ToString());
         }
     }
 }
