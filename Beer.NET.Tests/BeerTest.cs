@@ -20,9 +20,9 @@ namespace DerAtrox.BeerNET.Tests {
 			Assert.AreEqual(deserialized, "qpalym._#ä");
 		}
 
-		[Test, TestCaseSource(nameof(encoders))]
-        public void TestSerializeDeserialize(IBeerEncoder encoder) {
-			Assert.AreEqual(encoder.Decode(encoder.Encode("qpalym._#ä")), "qpalym._#ä");
+        [Test, TestCaseSource(nameof(encoders))]
+        public void TestLoop(IBeerEncoder encoder) {
+            Assert.AreEqual(encoder.Decode(encoder.Encode("QPqpALalYMymberBER,.-12#")), "QPqpALalYMymberBER,.-12#");
 		}
 	}
 }

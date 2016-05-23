@@ -11,7 +11,7 @@ namespace DerAtrox.BeerNET {
 
         static BeerEx() {
             substitutions = new Dictionary<char, string>();
-            for(int i = 0; i < lowerAlphabet.Length; i++) {
+            for (int i = 0; i < lowerAlphabet.Length; i++) {
                 substitutions.Add(lowerAlphabet[i], RepeatString("BEER", i + 1) + delimiter);
                 substitutions.Add(upperAlphabet[i], RepeatString("µ", i + 1) + delimiter);
             }
@@ -25,7 +25,7 @@ namespace DerAtrox.BeerNET {
 
         private static string RepeatString(string input, int count) {
             StringBuilder builder = new StringBuilder();
-            for(int i = 0; i < count; i++) {
+            for (int i = 0; i < count; i++) {
                 builder.Append(input);
             }
             return builder.ToString();
@@ -33,7 +33,7 @@ namespace DerAtrox.BeerNET {
 
         public string Encode(string input) {
             StringBuilder builder = new StringBuilder();
-            foreach (var str in input ) {
+            foreach (var str in input) {
                 builder.Append(Substitute(str));
             }
             return builder.ToString();
@@ -41,7 +41,7 @@ namespace DerAtrox.BeerNET {
 
         private static string Substitute(char c) {
             string substitution;
-            if(substitutions.TryGetValue(c, out substitution)) {
+            if (substitutions.TryGetValue(c, out substitution)) {
                 return substitution;
             } else {
                 return c.ToString();
@@ -59,12 +59,13 @@ namespace DerAtrox.BeerNET {
             E21 = 128,
             E22 = 256,
             R2 = 512,
+            My = 1024,
             None = 0
         }
 
         public string Decode(string input) {
             StringBuilder builder = new StringBuilder();
-            foreach(var c in DeserializeBeerImpl(input)) {
+            foreach (var c in DeserializeBeerImpl(input)) {
                 builder.Append(c);
             }
             return builder.ToString();
@@ -87,7 +88,7 @@ namespace DerAtrox.BeerNET {
                             state = State.B1;
                         } else if (state == State.Hyphen || state == State.Underscore) {
                             state = State.B2;
-                        } else if(state == State.R1) {
+                        } else if (state == State.R1) {
                             counter++;
                             state = State.B1;
                         } else {
@@ -108,16 +109,16 @@ namespace DerAtrox.BeerNET {
                         }
                         break;
                     case 'R':
-                        if(state == State.E12) {
+                        if (state == State.E12) {
                             state = State.R1;
-                        } else if(state == State.E22) {
+                        } else if (state == State.E22) {
                             state = State.R2;
                         } else {
                             isValid = false;
                         }
                         break;
                     case '-':
-                        if(state == State.R1) {
+                        if (state == State.R1) {
                             state = State.Hyphen;
                             hyphen = true;
                         } else {
@@ -125,7 +126,7 @@ namespace DerAtrox.BeerNET {
                         }
                         break;
                     case '_':
-                        if(state == State.R1) {
+                        if (state == State.R1) {
                             state = State.Underscore;
                             hyphen = false;
                         } else {
@@ -133,25 +134,26 @@ namespace DerAtrox.BeerNET {
                         }
                         break;
                     case 'µ':
-                        if(state == State.None) {
-                            counter++;
+                        if (state == State.None) {
+                            state = State.My;
                             my = true;
+                        } else if (state == State.My) {
+                            counter++;
                         } else {
                             isValid = false;
                         }
                         break;
                     case delimiter:
-                        if(state == State.R1) {
-                            counter++;
-                            yield return (my ? upperAlphabet : lowerAlphabet)[counter - 1];
-                            counter = 0;
-                            buffer = new StringBuilder();
-                        } else if(state == State.R2) {
+                        if (state == State.R1) {
+                            yield return lowerAlphabet[counter];
+                        } else if (state == State.My) {
+                            yield return upperAlphabet[counter];
+                        } else if (state == State.R2) {
                             yield return hyphen ? '.' : ',';
-                            buffer = new StringBuilder();
                         } else {
                             isValid = false;
                         }
+                        buffer = new StringBuilder();
                         state = State.None;
                         counter = 0;
                         break;
@@ -161,10 +163,11 @@ namespace DerAtrox.BeerNET {
                 }
 
                 if (!isValid) {
-                    foreach(var backlog in buffer.ToString()) {
+                    foreach (var backlog in buffer.ToString()) {
                         yield return backlog;
-                        buffer = new StringBuilder();
                     }
+                    buffer = new StringBuilder();
+                    state = State.None;
                 }
             }
         }
