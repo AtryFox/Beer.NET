@@ -3,12 +3,27 @@ using System.Text;
 
 namespace DerAtrox.BeerNET {
     public class BeerEx : IBeerEncoder {
+        /// <summary>
+        /// The delimiter that is used to mark the end of a character in Beer
+        /// </summary>
         private const char delimiter = '∫';
+        /// <summary>
+        /// The latin alphabet as used by Beer
+        /// </summary>
         private const string lowerAlphabet = "qwertzuiopasdfghjklyxcvbnm";
+        /// <summary>
+        /// The latin alphabet as used by Beer, but in upper case :)
+        /// </summary>
         private const string upperAlphabet = "QWERTZUIOPASDFGHJKLYXCVBNM";
 
+        /// <summary>
+        /// Static dictionary of subsitutions
+        /// </summary>
         private static Dictionary<char, string> substitutions;
 
+        /// <summary>
+        /// Static constructor to initialize substitutions
+        /// </summary>
         static BeerEx() {
             substitutions = new Dictionary<char, string>();
             for (int i = 0; i < lowerAlphabet.Length; i++) {
@@ -23,6 +38,12 @@ namespace DerAtrox.BeerNET {
             substitutions[','] = "BEER_BEER" + delimiter;
         }
 
+        /// <summary>
+        /// Repeats a string <paramref name="input"/> <paramref name="count"/>-times
+        /// </summary>
+        /// <param name="input">The string to repeat</param>
+        /// <param name="count">How often to repeat the string</param>
+        /// <returns>The input string, repeated n-times</returns>
         private static string RepeatString(string input, int count) {
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < count; i++) {
@@ -31,6 +52,11 @@ namespace DerAtrox.BeerNET {
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Serializes a string into Beer.
+        /// </summary>
+        /// <param name="input">The string to serialize.</param>
+        /// <returns>Serialized string.</returns>
         public string SerializeBeer(string input) {
             StringBuilder builder = new StringBuilder();
             foreach (var str in input) {
@@ -39,6 +65,11 @@ namespace DerAtrox.BeerNET {
             return builder.ToString();
         }
 
+        /// <summary>
+        /// Determines the substitution for a single character
+        /// </summary>
+        /// <param name="c">The character to substitute</param>
+        /// <returns>The matching substitution for the character</returns>
         private static string Substitute(char c) {
             string substitution;
             if (substitutions.TryGetValue(c, out substitution)) {
@@ -48,6 +79,22 @@ namespace DerAtrox.BeerNET {
             }
         }
 
+        /// <summary>
+        /// Deserializes a string from Beer.
+        /// </summary>
+        /// <param name="input">The string to deserialize.</param>
+        /// <returns>Deserialized string.</returns>
+        public string DeserializeBeer(string input) {
+            StringBuilder builder = new StringBuilder();
+            foreach (var c in DeserializeBeerImpl(input)) {
+                builder.Append(c);
+            }
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// Represents the current state of the finite state machine implemented by <see cref="DeserializeBeerImpl(string)"/>
+        /// </summary>
         private enum State {
             B1 = 1,
             E11 = 2,
@@ -63,24 +110,27 @@ namespace DerAtrox.BeerNET {
             None = 0
         }
 
-        public string DeserializeBeer(string input) {
-            StringBuilder builder = new StringBuilder();
-            foreach (var c in DeserializeBeerImpl(input)) {
-                builder.Append(c);
-            }
-            return builder.ToString();
-        }
-
+        /// <summary>
+        /// Enumerator method that yields single characters as soon as they're discovered
+        /// </summary>
+        /// <param name="input">The input string to parse</param>
+        /// <returns>IEnumerable </returns>
         private static IEnumerable<char> DeserializeBeerImpl(string input) {
+            // The current state of the FSM
             State state = State.None;
+            // buffer for the characters discovered since last valid character
             StringBuilder buffer = new StringBuilder();
+            // counts appearances of "BEER" or "µ"
             int counter = 0;
+            // flag to be set if the character during the current pass was invalid
             bool isValid = false;
+            // flag to be set if a hyphen ("-", true) or an underscore ("_") was seen
             bool hyphen = false;
 
             foreach (var c in input) {
                 buffer.Append(c);
                 isValid = true;
+
                 switch (c) {
                     case 'B':
                         if (state == State.None) {
@@ -160,6 +210,9 @@ namespace DerAtrox.BeerNET {
                         break;
                 }
 
+                // if the current character did not meet the expectations based on
+                // the current state, yield everything from the buffer, clean it
+                // and reset the state
                 if (!isValid) {
                     foreach (var backlog in buffer.ToString()) {
                         yield return backlog;
