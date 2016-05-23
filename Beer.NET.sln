@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beer.NET.Tests", "Beer.NET.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beer.NET.Examples", "Beer.NET.Examples\Beer.NET.Examples.csproj", "{99F1AA75-793A-4F8C-BB83-D42E83111C8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Beer.NET.Performance", "Beer.NET.Performance\Beer.NET.Performance.csproj", "{0CED2B84-4CBE-451C-9C09-C9EA136E8108}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{99F1AA75-793A-4F8C-BB83-D42E83111C8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99F1AA75-793A-4F8C-BB83-D42E83111C8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99F1AA75-793A-4F8C-BB83-D42E83111C8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CED2B84-4CBE-451C-9C09-C9EA136E8108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CED2B84-4CBE-451C-9C09-C9EA136E8108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CED2B84-4CBE-451C-9C09-C9EA136E8108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CED2B84-4CBE-451C-9C09-C9EA136E8108}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
