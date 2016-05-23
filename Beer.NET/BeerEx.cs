@@ -2,7 +2,7 @@
 using System.Text;
 
 namespace DerAtrox.BeerNET {
-    public class BeerEx {
+    public class BeerEx : IBeerEncoder {
         private const char delimiter = '∫';
         private const string lowerAlphabet = "qwertzuiopasdfghjklyxcvbnm";
         private const string upperAlphabet = "QWERTZUIOPASDFGHJKLYXCVBNM";
@@ -31,7 +31,7 @@ namespace DerAtrox.BeerNET {
             return builder.ToString();
         }
 
-        public static string SerializeBeer(string input) {
+        public string Encode(string input) {
             StringBuilder builder = new StringBuilder();
             foreach (var str in input ) {
                 builder.Append(Substitute(str));
@@ -62,7 +62,7 @@ namespace DerAtrox.BeerNET {
             None = 0
         }
 
-        public static string DeserializeBeer(string input) {
+        public string Decode(string input) {
             StringBuilder builder = new StringBuilder();
             foreach(var c in DeserializeBeerImpl(input)) {
                 builder.Append(c);
