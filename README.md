@@ -26,10 +26,11 @@ Simple example in C#:
 using DerAtrox.BeerNET;
 
 public void BeerTest() {
-	string serialized = Beer.SerializeBeer("Hi");
+	IBeerEncoder encoder = new Beer(); // or new BeerEx()
+	string serialized = encoder.Encode("Hi");
 	// Value: "µµµµµµµµµµµµµµµµ∫BEERBEERBEERBEERBEERBEERBEERBEER∫"
 	
-	string deserialized = Beer.DeserializeBeer("µµµµµµµµµµµµµµµµ∫BEERBEERBEERBEERBEERBEERBEERBEER∫");
+	string deserialized = encoder.Decode("µµµµµµµµµµµµµµµµ∫BEERBEERBEERBEERBEERBEERBEERBEER∫");
 	// Value: "Hi"
 }
 ```
