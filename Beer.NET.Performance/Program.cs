@@ -34,28 +34,28 @@ namespace BeerNET.Performance {
 
             sw = Stopwatch.StartNew();
             for (int i = 0; i < N; i++) {
-                results[i] = beerEx.SerializeBeer(inputs[i]);
+                results[i] = beerEx.Encode(inputs[i]);
             }
             sw.Stop();
             var timeBeerExSerialize = sw.Elapsed;
 
             sw = Stopwatch.StartNew();
             for (int i = 0; i < N; i++) {
-                results[i] = beer.SerializeBeer(inputs[i]);
+                results[i] = beer.Encode(inputs[i]);
             }
             sw.Stop();
             var timeBeerSerialize = sw.Elapsed;
 
             sw = Stopwatch.StartNew();
             for (int i = 0; i < N; i++) {
-                inputs[i] = beerEx.DeserializeBeer(results[i]);
+                inputs[i] = beerEx.Decode(results[i]);
             }
             sw.Stop();
             var timeBeerExDeserialize = sw.Elapsed;
 
             sw = Stopwatch.StartNew();
             for (int i = 0; i < N; i++) {
-                inputs[i] = beer.DeserializeBeer(results[i]);
+                inputs[i] = beer.Decode(results[i]);
             }
             sw.Stop();
             var timeBeerDeserialize = sw.Elapsed;

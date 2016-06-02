@@ -10,19 +10,19 @@ namespace DerAtrox.BeerNET.Tests {
 
         [Test, TestCaseSource("encoders")]
         public void TestSerialize(IBeerEncoder encoder) {
-            string serialized = encoder.SerializeBeer("qpalym._#ä");
+            string serialized = encoder.Encode("qpalym._#ä");
             Assert.AreEqual(serialized, "BEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEER-BEER∫_#ä");
         }
 
         [Test, TestCaseSource("encoders")]
         public void TestDeserialize(IBeerEncoder encoder) {
-            string deserialized = encoder.DeserializeBeer("BEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEER-BEER∫_#ä");
+            string deserialized = encoder.Decode("BEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEERBEER∫BEER-BEER∫_#ä");
             Assert.AreEqual(deserialized, "qpalym._#ä");
         }
 
         [Test, TestCaseSource("encoders")]
         public void TestLoop(IBeerEncoder encoder) {
-            Assert.AreEqual(encoder.DeserializeBeer(encoder.SerializeBeer("QPqpALalYMymberBER,.-12#")), "QPqpALalYMymberBER,.-12#");
+            Assert.AreEqual(encoder.Decode(encoder.Encode("QPqpALalYMymberBER,.-12#")), "QPqpALalYMymberBER,.-12#");
         }
 
         [Test, TestCaseSource("encoders")]
@@ -30,7 +30,7 @@ namespace DerAtrox.BeerNET.Tests {
         {
             var input = "BEE∫BEER∫";
             var expected = "BEE∫q";
-            var actual = encoder.DeserializeBeer(input);
+            var actual = encoder.Decode(input);
             Assert.AreEqual(expected, actual);
         }
 
@@ -39,7 +39,7 @@ namespace DerAtrox.BeerNET.Tests {
         {
             var input = "BEERµµ∫BEER∫µµBEER∫";
             var expected = "BEERWqµµq";
-            var actual = encoder.DeserializeBeer(input);
+            var actual = encoder.Decode(input);
             Assert.AreEqual(expected, actual);
         }
     }

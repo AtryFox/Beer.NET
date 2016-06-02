@@ -13,11 +13,11 @@ namespace DerAtrox.BeerNET.Examples {
             txtOutput.Clear();
 
             if (optSBeer.Checked) {
-                txtOutput.Text = encoder.SerializeBeer(txtInput.Text);
+                txtOutput.Text = encoder.Encode(txtInput.Text);
             } else if (optDBeer.Checked) {
-                txtOutput.Text = encoder.DeserializeBeer(txtInput.Text);
+                txtOutput.Text = encoder.Decode(txtInput.Text);
             } else {
-                txtOutput.Text = encoder.DeserializeBeer(encoder.DeserializeBeer(txtInput.Text));
+                txtOutput.Text = encoder.Decode(encoder.Decode(txtInput.Text));
             }
         }
 

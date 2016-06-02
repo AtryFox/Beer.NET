@@ -63,8 +63,7 @@ namespace DerAtrox.BeerNET
         /// </summary>
         /// <param name="input">The string to serialize.</param>
         /// <returns>Serialized string.</returns>
-        public string SerializeBeer(string input)
-        {
+        public string Encode(string input) {
             StringBuilder builder = new StringBuilder();
             foreach (var str in input)
             {
@@ -96,10 +95,9 @@ namespace DerAtrox.BeerNET
         /// </summary>
         /// <param name="input">The string to deserialize.</param>
         /// <returns>Deserialized string.</returns>
-        public string DeserializeBeer(string input)
-        {
+        public string Decode(string input) {
             StringBuilder builder = new StringBuilder();
-            foreach (var c in DeserializeBeerImpl(input))
+            foreach (var c in DecodeImpl(input))
             {
                 builder.Append(c);
             }
@@ -107,7 +105,7 @@ namespace DerAtrox.BeerNET
         }
 
         /// <summary>
-        /// Represents the current state of the finite state machine implemented by <see cref="DeserializeBeerImpl(string)"/>
+        /// Represents the current state of the finite state machine implemented by <see cref="DecodeImpl(string)"/>
         /// </summary>
         private enum State
         {
@@ -149,7 +147,7 @@ namespace DerAtrox.BeerNET
         /// </summary>
         /// <param name="input">The input string to parse</param>
         /// <returns>IEnumerable </returns>
-        private static IEnumerable<char> DeserializeBeerImpl(string input)
+        private static IEnumerable<char> DecodeImpl(string input)
         {
             // The current state of the FSM
             State state = State.None;

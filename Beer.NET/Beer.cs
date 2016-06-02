@@ -12,7 +12,7 @@ namespace DerAtrox.BeerNET {
         /// </summary>
         /// <param name="input">The string to serialize.</param>
         /// <returns>Serialized string.</returns>
-        public string SerializeBeer(string input) {
+        public string Encode(string input) {
             input = input.Replace(".", "BEER-BEER∫");
             input = input.Replace(",", "BEER_BEER∫");
 
@@ -33,7 +33,7 @@ namespace DerAtrox.BeerNET {
         /// </summary>
         /// <param name="input">The string to deserialize.</param>
         /// <returns>Deserialized string.</returns>
-        public string DeserializeBeer(string input) {
+        public string Decode(string input) {
             input = input.Replace("BEER-BEER∫", ".");
             input = input.Replace("BEER_BEER∫", ",");
 
