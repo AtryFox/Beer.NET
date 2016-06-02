@@ -27,8 +27,7 @@ namespace DerAtrox.BeerNET.Tests {
         }
 
         [Test, TestCaseSource("Encoders")]
-        public void TestInvalidDelimiter(IBeerEncoder encoder)
-        {
+        public void TestInvalidDelimiter(IBeerEncoder encoder) {
             var input = "BEE∫BEER∫";
             var expected = "BEE∫q";
             var actual = encoder.Decode(input);
@@ -36,8 +35,7 @@ namespace DerAtrox.BeerNET.Tests {
         }
 
         [Test, TestCaseSource("Encoders")]
-        public void TestMixedCases(IBeerEncoder encoder)
-        {
+        public void TestMixedCases(IBeerEncoder encoder) {
             var input = "BEERµµ∫BEER∫µµBEER∫";
             var expected = "BEERWqµµq";
             var actual = encoder.Decode(input);
