@@ -64,6 +64,11 @@ namespace BeerNET.Performance {
             Console.WriteLine("Time for BeerEx (Serialize): " + timeBeerExSerialize.ToString());
             Console.WriteLine("Time for Beer (Deserialize): " + timeBeerDeserialize.ToString());
             Console.WriteLine("Time for BeerEx (Deserialize): " + timeBeerExDeserialize.ToString());
+
+            if(Debugger.IsAttached)
+            {
+                Console.ReadKey();
+            }
         }
     }
 }
