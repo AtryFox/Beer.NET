@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 
 namespace DerAtrox.BeerNET {
+    /// <summary>
+    /// Used to decode and encode Beer.
+    /// </summary>
     public class Beer : IBeerEncoder {
         /// <summary>
         /// All letters of the latin alphabet which are used in Beer.

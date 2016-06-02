@@ -1,4 +1,7 @@
 ﻿namespace DerAtrox.BeerNET {
+    /// <summary>
+    /// Used to decode and encode Beer.
+    /// </summary>
     public interface IBeerEncoder {
         /// <summary>
         /// Serializes a string into Beer.
