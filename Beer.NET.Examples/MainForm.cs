@@ -3,6 +3,8 @@ using System.Windows.Forms;
 
 namespace DerAtrox.BeerNET.Examples {
     public partial class MainForm : Form {
+        private IBeerEncoder encoder;
+
         public MainForm() {
             InitializeComponent();
         }
@@ -11,11 +13,19 @@ namespace DerAtrox.BeerNET.Examples {
             txtOutput.Clear();
 
             if (optSBeer.Checked) {
-                txtOutput.Text = Beer.SerializeBeer(txtInput.Text);
+                txtOutput.Text = encoder.Encode(txtInput.Text);
             } else if (optDBeer.Checked) {
-                txtOutput.Text = Beer.DeserializeBeer(txtInput.Text);
+                txtOutput.Text = encoder.Decode(txtInput.Text);
             } else {
-                txtOutput.Text = Beer.DeserializeBeer(Beer.SerializeBeer(txtInput.Text));
+                txtOutput.Text = encoder.Decode(encoder.Decode(txtInput.Text));
+            }
+        }
+
+        private void EncoderSelection_CheckedChanged(object sender, EventArgs e) {
+            if (optBeer.Checked) {
+                encoder = new Beer();
+            } else if (optBeerEx.Checked) {
+                encoder = new BeerEx();
             }
         }
     }
