@@ -24,5 +24,23 @@ namespace DerAtrox.BeerNET.Tests {
         public void TestLoop(IBeerEncoder encoder) {
             Assert.AreEqual(encoder.DeserializeBeer(encoder.SerializeBeer("QPqpALalYMymberBER,.-12#")), "QPqpALalYMymberBER,.-12#");
         }
+
+        [Test, TestCaseSource("encoders")]
+        public void TestInvalidDelimiter(IBeerEncoder encoder)
+        {
+            var input = "BEE∫BEER∫";
+            var expected = "BEE∫q";
+            var actual = encoder.DeserializeBeer(input);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test, TestCaseSource("encoders")]
+        public void TestMixedCases(IBeerEncoder encoder)
+        {
+            var input = "BEERµµ∫BEER∫µµBEER∫";
+            var expected = "BEERWqµµq";
+            var actual = encoder.DeserializeBeer(input);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
